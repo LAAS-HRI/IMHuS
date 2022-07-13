@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!-- Agents -->
+<!-- This part is read by the placeAgents_pub_node which locate agents and update the costmaps -->
+<!-- It is important that the specidied entities in this section exist in the simulation -->
+
+<!-- Actions -->
+<!-- goto_action(poseID, agentID -->
+<!-- goto_action(x, y, theta, radius, agentID) -->
+<!-- wait_action(duration) -->
+<!-- wait_action(topic, event) -->
+<!-- async_action(trigger, taskID) is a special type of action, it only needs a trigger (string) and a task to execute  -->
+<!--    when you publish the trigger to the topic /async_actions_topic it will start -->
+
+<!-- Goals -->
+<!-- pose_goal(, x, y, theta, radius) -->
+<!-- compound_task(type="compound_task", actions[]) -->
+<!-- low level tasks are goto_action, wait_action -->
+
+<!-- Advices -->
+<!-- Steps in scenarios can either be a single action (<goto_action entityID=.../>) but the name has to be one of the single action or it wont be read -->
+<!-- AsyncActions can be added to a scenario in a seperate step called AsyncActions -->
+
+<map_name name="elevator"/>
+<agents>
+  <human id="human1"/>
+  <human id="human2"/>
+  <human id="human3"/>
+  <human id="human4"/>
+  <human id="human5"/>
+  <robot id="tiago"/>
+</agents>
+
+<!-- <groups>
+  <group id="group1" members="human1 human3 human5"/>
+  <group id="group2" members="human3 human4"/>
+</groups> -->
+
+<poses>
+  <pose>
+    <pose id="initial_pose1" x="5" y="-2" theta="3.14"/>
+    <pose id="initial_pose2" x="2" y="2" theta="-1.57"/>
+    <pose id="initial_pose3" x="8.5" y="2" theta="-1.57"/>
+    <pose id="initial_pose4" x="7" y="-2" theta="1.57"/>
+    <pose id="initial_pose5" x="6.5" y="-0.5" theta="1.1"/>
+    <pose id="initial_pose_robot" x="5" y="1" theta="3.14"/>
+
+    <pose id="back_forth1" x="3" y="-2" theta="1.57"/>
+    <pose id="back_forth2" x="2" y="2" theta="-1.57"/>
+
+    <pose id="elevator_door1" x="2" y="0" theta="3.14"/>
+    <pose id="elevator_door1_button" x="2" y="1" theta="3.14"/>
+    <pose id="center_floor1" x="5" y="0" theta="1.57"/>
+    <pose id="small_table_floor1" x="4.5" y="-8" theta="1.57"/>
+    <pose id="printer_floor1" x="7.5" y="0" theta="0"/>
+
+    <pose id="elevator_door2" x="-2" y="0" theta="0"/>
+    <pose id="elevator_door2_button" x="-2" y="1" theta="0"/>
+    <pose id="center_floor2" x="-5" y="0" theta="-1.57"/>
+    <pose id="small_table_floor2" x="-4.5" y="-8" theta="1.57"/>
+    <pose id="printer_floor2" x="-7.5" y="0" theta="0"/>
+  </pose>
+  <social_space>
+    <elevator id="elevator" x="0" y="0">
+      <p1 relativeX="0.5" relativeY="0.5" theta="0"/>
+      <p2 relativeX="0.5" relativeY="-0.5" theta="0"/>
+      <p3 relativeX="-0.5" relativeY="-0.5" theta="0"/>
+      <p4 relativeX="-0.5" relativeY="0.5" theta="0"/>
+    </elevator>
+    <elevator_door1 id="elevator_door1" x="2" y="0">
+      <p1 relativeX="0" relativeY="0" theta="3.14"/>
+      <p2 relativeX="0" relativeY="0.7" theta="3.14"/>
+      <p3 relativeX="0" relativeY="-0.7" theta="3.14"/>
+      <p4 relativeX="0.7" relativeY="0" theta="3.14"/>
+      <p5 relativeX="0.7" relativeY="0.7" theta="3.14"/>
+      <p6 relativeX="0.7" relativeY="-0.7" theta="3.14"/>
+    </elevator_door1>
+    <elevator_door2 id="elevator_door2" x="-2" y="0">
+      <!-- TODO define as elevator_door1 -->
+    </elevator_door2>
+  </social_space>
+</poses>
+
+<goals>
+  <compound_tasks>
+    <call_elevator1>
+      <goto_action poseID="elevator_door1_button"/>
+      <publish_action topic="/elevator/request" msg="door1"/>
+      <wait_action topic="/elevator/door1_state" event="open"/>
+    </call_elevator1>
+    <go_elevator1>
+      <goto_action socialSpaceID="elevator_door1"/>
+    </go_elevator1>
+    <req_floor1>
+      <publish_action topic="/elevator/request" msg="floor1"/>
+    </req_floor1>
+    <req_floor2>
+      <publish_action topic="/elevator/request" msg="floor2"/>
+    </req_floor2>
+    <push_button1>
+      <goto_action poseID="elevator_door1_button"/>
+      <publish_action topic="/elevator/request" msg="door1"/>
+    </push_button1>
+    <back_and_forth>
+      <goto_action poseID="back_forth1"/>
+      <goto_action poseID="back_forth2"/>
+    </back_and_forth>
+    <!-- definition of the async task : -->
+    <take_robot_floor2>
+      <goto_action poseID="elevator_door1_button"/>
+      <publish_action topic="/elevator/request" msg="door1"/>
+      <wait_action event="open" topic="/elevator/door1_state"/>
+      <goto_action socialSpaceID="elevator"/>
+      <publish_action topic="/elevator/request" msg="floor2"/>
+      <wait_action event="open" topic="/elevator/door2_state"/>
+      <publish_action topic="/elevator/request" msg="floor1"/>
+      <wait_action event="open" topic="/elevator/door1_state"/>
+      <goto_action poseID="initial_pose2"/>
+    </take_robot_floor2>
+  </compound_tasks>
+
+  <scenarios>
+    <take_elevator> 
+    <!-- take_elevator is the scenario of interest in the video. -->
+    <!-- the AsyncActions step in started in parallel and will just
+    listen to the async_action_topic up to the point it is triggered -->
+      <AsyncActions>
+        <async_action_res taskID="take_robot_floor2"/>
+      </AsyncActions>
+      <initialisation>
+        <goto_action entityID="human2" poseID="initial_pose2"/>
+      </initialisation>
+      <bf1>
+        <go entityID="human2" taskID="back_and_forth"/>
+      </bf1>
+      <bf2>
+        <go entityID="human2" taskID="back_and_forth"/>
+      </bf2>
+      <waiting>
+        <wait_action entityID="human1" duration="30"/>
+      </waiting>
+    </take_elevator> 
+
+    <!-- the scenario below is just to put the agents at inital pose -->
+    <init>
+      <initialisation>
+        <goto_action entityID="human1" poseID="initial_pose1"/>
+        <goto_action entityID="human2" poseID="initial_pose2"/>
+        <goto_action entityID="human3" poseID="initial_pose3"/>
+        <goto_action entityID="human4" poseID="initial_pose4"/>
+        <goto_action entityID="human5" poseID="initial_pose5"/>
+      </initialisation>
+    </init>
+  </scenarios>
+</goals>
