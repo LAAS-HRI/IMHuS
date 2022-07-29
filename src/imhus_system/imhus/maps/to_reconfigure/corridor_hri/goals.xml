@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<map_name name="corridor_hri"/>
+
+<goals>
+
+  <poses>
+    <pose x="16.0" y="1.5" theta="-3.14" radius="0.0"/>
+  </poses>
+
+  <compound_tasks>>
+  </compound_tasks>
+  
+  <scenarios>
+    <corridor_hri>
+      <init_h  x="16.0" y="1.5" theta="-3.14" radius="0.0"/>
+      <goal_h  x="2.0" y="1.5" theta="-3.14" radius="0.0"/>
+      <init_r  x="4.0" y="1.5" theta="0.0" radius="0.0"/>
+      <goal_r  x="18.0" y="1.5" theta="0.0" radius="0.0"/>
+    </corridor_hri>
+  </scenarios>
+
+  <endless>
+    <endless_agent1>
+      <pose x="13.0" y="10.0" theta="1.57" radius="1.0"/>
+      <pose x="7.0" y="10.0" theta="1.57" radius="1.0"/>
+      <pose x="7.0" y="4.0" theta="-1.57" radius="1.0"/>
+      <pose x="13.0" y="4.0" theta="-1.57" radius="1.0"/>
+    </endless_agent1>
+
+    <endless_agent2>
+      <pose x="7.0" y="10.0" theta="1.57" radius="1.0"/>
+      <pose x="13.0" y="10.0" theta="1.57" radius="1.0"/>
+      <pose x="13.0" y="4.0" theta="-1.57" radius="1.0"/>
+      <pose x="7.0" y="7.0" theta="0.0" radius="1.0"/>
+      <pose x="5.0" y="4.0" theta="-1.57" radius="1.0"/>
+    </endless_agent2>
+  </endless>
+
+</goals>

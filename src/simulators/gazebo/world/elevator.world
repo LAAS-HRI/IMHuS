@@ -1,0 +1,667 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="elevator">
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+<scene>
+    <shadows>0</shadows>
+  </scene>
+
+    <physics type="ode">
+        <max_step_size>0.001</max_step_size><!--default value-->
+        <real_time_update_rate>1000</real_time_update_rate><!-- to make it as fast as possible, put 0000-->
+    </physics>
+
+
+    <!--human/actor file is in models/actor/model.sdf-->
+    <actor name="human1">
+    <pose>5 -2 1.00 0 0 3.14</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor>
+    <!--  -->
+    <actor name="human2">
+    <static>false</static>
+    <pose>2 2 1.00 0 0 -1.57</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor>
+    <!--  -->
+    <actor name="human3">
+    <pose>8.5 2 1.00 0 0 -1.57</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+     <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor>
+    <!--  -->
+    <actor name="human4">
+    <pose>7 -2 1.00 0 0 1.57</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor>
+    <!--  -->
+    <actor name="human5">
+    <pose>-7 -2 1.00 0 0 1.1</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+     <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor>
+    <!--  -->
+    <!-- 
+
+     -->
+    <actor name="human6">
+    <pose>-5 -2 1.00 0 0 3.14</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor>
+    <!--  -->
+    <!-- <actor name="human7">
+    <static>false</static>
+    <pose>-2 2 1.00 0 0 -1.57</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor> -->
+    <!--  -->
+    <!-- <actor name="human8">
+    <pose>-8.5 2 1.00 0 0 -1.57</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+     <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor> -->
+    <!--  -->
+    <!-- <actor name="human9">
+    <pose>-7 -5 1.00 0 0 1.57</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+      <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor> -->
+    <!--  -->
+    <!-- <actor name="human10">
+    <pose>-6.5 -0.5 1.00 0 0 1.1</pose>
+      <skin>
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <scale>1.0</scale>
+      </skin>
+     <animation name="standing">
+        <filename>model://actor/meshes/ANIMATION_standing.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <animation name="walking">
+        <filename>model://actor/meshes/ANIMATION_walking.dae</filename>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+      <plugin name="actor_plugin" filename="libactor_plugin.so"/>
+    </actor> -->
+    <!--  -->
+  
+
+    <!-- The elevator car -->
+    <model name="elevator">
+      <link name="world"/>
+      <pose>0 0 0 0 0 0</pose>
+      <static>false</static>
+
+      <link name="base_link">
+      </link>
+
+
+      <joint name="fixed" type="fixed">
+        <parent>world</parent>
+        <child>base_link</child>
+      </joint>
+
+      <link name="door1">
+        <self_collide>false</self_collide>
+        <pose>1.25 0 1.03 0 0 0</pose>
+        <inertial>
+          <mass>0.001</mass>
+          <inertia>
+           <ixx>0.0036</ixx>
+           <ixy>0</ixy>
+           <ixz>0</ixz>
+           <iyy>0.0014</iyy>
+           <iyz>0</iyz>
+           <izz>0.0022</izz>
+         </inertia>
+        </inertial>
+        <collision name="door1_collision">
+          <geometry>
+            <box>
+              <size>0.05 2.6 2.05</size>
+            </box>
+          </geometry>
+          <surface>
+          <friction>
+            <ode><mu>0</mu><mu2>0</mu2></ode>
+          </friction>
+        </surface>
+        </collision>
+        <visual name="door1_visual">
+          <geometry>
+            <box>
+              <size>0.1 2.6 2.05</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+
+      <joint name="door1_joint" type="prismatic">
+        <parent>base_link</parent>
+        <child>door1</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>2.5</upper>
+            <effort>1</effort>
+          </limit>
+        <!--         
+          <dynamics>
+            <damping>0.000005</damping>
+            <friction>0.000001</friction>
+          </dynamics> -->
+        </axis>
+
+      </joint>
+
+      <link name="door2">
+        <self_collide>false</self_collide>
+        <pose>-1.25 0 1.03 0 0 0</pose>
+        <inertial>
+          <mass>0.001</mass>
+          <inertia>
+           <ixx>0.0036</ixx>
+           <ixy>0</ixy>
+           <ixz>0</ixz>
+           <iyy>0.0014</iyy>
+           <iyz>0</iyz>
+           <izz>0.0022</izz>
+         </inertia>
+        </inertial>
+        <collision name="door2_collision">
+          <geometry>
+            <box>
+              <size>0.05 2.6 2.05</size>
+            </box>
+          </geometry>
+          <surface>
+          <friction>
+            <ode><mu>0</mu><mu2>0</mu2></ode>
+          </friction>
+        </surface>
+        </collision>
+        <visual name="door2_visual">
+          <geometry>
+            <box>
+              <size>0.1 2.6 2.05</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+
+      <joint name="door2_joint" type="prismatic">
+        <parent>world</parent>
+        <child>door2</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>2.5</upper>
+            <effort>1</effort>
+          </limit>
+          <!-- <dynamics>
+            <damping>5</damping>
+            <friction>3</friction>
+          </dynamics> -->
+        </axis>
+      </joint>
+
+      <plugin name="joint1_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+        <jointName>door1_joint</jointName>
+        <robotNamespace>elevator</robotNamespace>
+        <updateRate>50.0</updateRate>
+        <alwaysOn>true</alwaysOn>
+      </plugin>
+      <plugin name="joint2_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+        <jointName>door2_joint</jointName>
+        <robotNamespace>elevator</robotNamespace>
+        <updateRate>50.0</updateRate>
+        <alwaysOn>true</alwaysOn>
+      </plugin>
+
+      <!-- Plugin to control the elevator -->
+      <plugin filename="libelevator_plugin.so" name="elevator_plugin">
+        <door1_joint>elevator::door1</door1_joint>
+        <door2_joint>elevator::door2</door2_joint>
+
+        <!-- Time the elevator door will stay open in seconds -->
+        <door_wait_time>10</door_wait_time>
+        <!--joint motor parameters -->
+        <door_speed>0.5</door_speed>
+        <fmax>10.0</fmax>
+
+        <!-- This topic is used to control the elevator -->
+        <!-- <topic>/elevator/floor</topic> -->
+      </plugin>
+    </model>
+
+    <!-- Elevator shaft -->
+    <model name="elevator_shaft">
+      <static>true</static>
+      <link name="link2">
+
+        <collision name="shaft_wall1_collision">
+          <pose>0 1.25 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.2 0.15 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="shaft_wall1_visual">
+          <pose>0 1.25 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.4 0.15 2</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <collision name="shaft_wall2_collision">
+          <pose>0 -1.25 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.2 0.15 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="shaft_wall2_visual">
+          <pose>0 -1.25 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.4 0.15 2</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <collision name="separation1_collision">
+          <pose>0 -5.68 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8.675 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="separation1_visual">
+          <pose>0 -5.68 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8.675 2</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <collision name="separation2_collision">
+          <pose>0 5.68 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8.675 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="separation2_visual">
+          <pose>0 5.68 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 8.675 2</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <!--borders 1 &3 are north (-x) and south (+x) big walls-->
+        <collision name="border1_collision">
+          <pose>-9.9 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="border1_visual">
+          <pose>-9.9 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name="border3_collision">
+          <pose>9.9 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="border3_visual">
+          <pose>9.9 0 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+        </visual>
+
+        <!--borders 2 &4 are east (+y) and west big walls-->
+        <collision name="border2_collision">
+          <pose>0 9.9 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="border2_visual">
+          <pose>0 9.9 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+        </visual>
+        <collision name="border4_collision">
+          <pose>0 -9.9 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="border4_visual">
+          <pose>0 -9.9 1 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+<!-- other elements in the world -->
+<!-- floor 0 -->
+<!-- first carré -->
+<include>
+  <uri>model://Sofa</uri>
+  <name>sofa11</name>
+  <static>true</static>
+  <pose>3 -5 0 0 0 0</pose>
+</include>
+<include>
+  <uri>model://Sofa</uri>
+    <name>sofa12</name>
+  <static>true</static>
+  <pose>6 -5 0 0 0 3.14</pose>
+</include>
+<include>
+  <uri>model://cafe_table</uri>
+  <static>true</static>
+  <pose>4.5 -5 0 0 0 0</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <pose>4.5 -4 0 0 0 0</pose>
+</include>
+
+<!-- second carré -->
+<include>
+  <uri>model://table_marble</uri>
+  <static>true</static>
+  <pose>5 3 0.5 0 0 1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair21</name>
+  <pose>3.5 3.5 0 0 0 1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair22</name>
+  <pose>3.5 2.5 0 0 0 1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair23</name>
+  <pose>6.5 3.5 0 0 0 -1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair24</name>
+  <pose>6.5 2.5 0 0 0 -1.57</pose>
+</include>
+
+
+
+<include>
+  <uri>model://BedsideTable2</uri>
+  <static>true</static>
+  <pose>9 0 0 0 0 -1.57</pose>
+</include>
+
+
+<!-- floor1 -->
+<!-- first carré -->
+<include>
+  <uri>model://Sofa</uri>
+  <name>sofa31</name>
+  <static>true</static>
+  <pose>-3 -5 0 0 0 3.14</pose>
+</include>
+<include>
+  <uri>model://Sofa</uri>
+    <name>sofa32</name>
+  <static>true</static>
+  <pose>-6 -5 0 0 0 0</pose>
+</include>
+<include>
+  <uri>model://cafe_table</uri>
+  <static>true</static>
+  <name>cafe_table4</name>
+  <pose>-4.5 -5 0 0 0 0</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <name>visitor4</name>
+  <static>true</static>
+  <pose>-4.5 -4 0 0 0 0</pose>
+</include>
+
+<!-- second carré -->
+<include>
+  <uri>model://table_marble</uri>
+  <name>table_marble4</name>
+  <static>true</static>
+  <pose>-5 3 0.5 0 0 1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair41</name>
+  <pose>-3.5 3.5 0 0 0 -1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair42</name>
+  <pose>-3.5 2.5 0 0 0 -1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair43</name>
+  <pose>-6.5 3.5 0 0 0 1.57</pose>
+</include>
+<include>
+  <uri>model://VisitorChair</uri>
+  <static>true</static>
+  <name>chair44</name>
+  <pose>-6.5 2.5 0 0 0 1.57</pose>
+</include>
+
+<include>
+  <uri>model://BedsideTable2</uri>
+  <name>bd2</name>
+  <static>true</static>
+  <pose>-9 0 0 0 0 1.57</pose>
+</include>
+
+
+<!--other stuff-->
+<include>
+  <uri>model://Sofa</uri>
+    <name>sofa_corner 11</name>
+  <static>true</static>
+  <pose>3 7.5 0 0 0 -0.61</pose>
+</include>
+<include>
+  <uri>model://Sofa</uri>
+    <name>sofa_corner 12</name>
+  <static>true</static>
+  <pose>7 7.5 0 0 0 -1.81</pose>
+</include>
+
+<include>
+  <uri>model://Sofa</uri>
+    <name>sofa_corner 21</name>
+  <static>true</static>
+  <pose>-7 7.5 0 0 0 -0.61</pose>
+</include>
+<include>
+  <uri>model://Sofa</uri>
+    <name>sofa_corner 22</name>
+  <static>true</static>
+  <pose>-3 7.5 0 0 0 -1.81</pose>
+</include>
+
+
+  </world>
+</sdf>

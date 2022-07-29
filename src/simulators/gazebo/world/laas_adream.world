@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="laas_adream">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <physics type="ode">
+        <max_step_size>0.001</max_step_size><!--default value-->
+        <real_time_update_rate>1000.0</real_time_update_rate><!-- to make it as fast as possible-->
+        <gravity>0 0 -9.8</gravity>
+    </physics>
+    <model name="laas_adream">
+      <pose>0 0 0  0 0 0</pose>
+      <static>true</static>
+      <link name="laas_adream_link">
+        <visual name="visual">
+          <geometry>
+            <mesh><uri>model://laas_adream.dae</uri></mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!--human/actor file is in models/actor/model.sdf-->
+    <include>
+      <uri>model://actor</uri>
+      <name>human1</name>
+      <pose>2 2 1.05 0 0 0</pose>
+    </include>
+
+
+
+  </world>
+</sdf>

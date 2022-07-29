@@ -1,0 +1,26 @@
+<launch>
+  <arg name="ns" default="imhus"/>
+  <arg name="map_name" default="elevator"/>
+
+  <!-- MAP SERVERS -->
+    <!-- static map server -->
+    <include file="$(find imhus)/launch/include/_map_static.launch">
+      <arg name="ns" value="$(arg ns)"/>
+      <arg name="map_name" value="$(arg map_name)"/>
+    </include>
+
+    <!-- the node agents_tracker is not needed when ORCA is running -->
+    <!-- if you want the agents on the costmap, uncomment line ine costmap_global.yaml -->
+    <node name="agentTrackerNode_IMHUS" pkg="imhus" type="agents_tracker.py"/>
+
+
+    <!-- this is from InHus (IMHuS v1.0) could be useful in the future -->
+    <!-- it was to add a perception layer for the humans taking walls into account -->
+    <!-- pov map server -->
+    <!-- <include file="$(find imhus_navigation)/launch/other_launch/_map_pov.launch">
+      <arg name="ns" value="$(arg ns)"/>
+      <arg name="map_name" value="$(arg map_name)"/>
+    </include>   -->
+
+
+</launch>

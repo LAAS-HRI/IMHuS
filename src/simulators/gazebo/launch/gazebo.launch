@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="nb_humans" default="6"/>
+  <arg name="ns" default="imhus"/>
+  <arg name="gui" default="false"/>
+  <arg name="robot" default="false"/>
+
+  <arg name="robot_pose" default="-x 5 -y 1 -z 0. -R 0.0 -P 0.0 -Y 3.14"/>
+
+  <arg name="map" default="elevator"/>
+  <arg name="world_name" default="$(find imhus_gazebo)/world/$(arg map).world"/>
+
+  <param name="map_name" value="$(arg map)"/>
+  <param name="/use_sim_time" value="true"/>
+  <param name="nb_humans" value="$(arg nb_humans)"/>
+  <param name="robot" value="$(arg robot)"/>
+
+<!--Spawn environment-->
+<!-- start gazebo server-->
+<node name="gazebo" pkg="gazebo_ros" type="gzserver" respawn="false" output="screen"
+  args="$(arg world_name)">
+  <!--following remap may not be necessary for pr2 -->
+  <remap from="tf" to="gazebo_tf"/>  
+</node>
+
+<!-- comment me for headless -->
+<group if="$(arg gui)">
+<node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen"/>
+</group>
+
+<!-- TF for humans -->
+<!-- this node is necessary only to make movebase run -->
+<node name="dummy_tf_br" pkg="imhus_gazebo" type="dummy_tf_br.py" ns="$(arg ns)"/>
+
+<!--spawn tiago-->
+<group if="$(arg robot)">
+  <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="gzpose" value="$(arg robot_pose)"/>
+    <arg name="robot" value="iron"/>
+    <arg name="arm" value="false"/>
+    <arg name="ft_sensor" value="false"/>
+    <!-- uncomment to turn off laser, laser is needed for Cohan -->
+    <!-- <arg name="camera_model" value="false"/> -->
+    <!-- <arg name="laser_model" value="false"/> -->
+    <arg name="use_moveit_camera" value="false"/>
+    <arg name="use_dynamic_footprint" value="false"/>
+  </include>
+
+  <node name="tf_br_robot" pkg="imhus_gazebo" type="tf_br_robot.py"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> 
+</group>
+
+<!-- Interface with the simulator -->
+<!-- <include file="$(find imhus_navigation)/launch/simulator_launch/include/_gazebo_interface.launch">
+  <arg name="ns" value="$(arg ns)"/>
+  <arg name="nb_humans" value="$(arg nb_humans)"/>
+</include> -->
+
+</launch>
+
+
+
+
+
+
+<!-- <arg name="model" default="burger" doc="model type [waffle, waffle, waffle_pi]"/>
+
+<param name="robot_description" command="$(find xacro)/xacro $put-$-inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+<node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model turtlebot3_$(arg model) -x 8 -param robot_description" />
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+<node name="fake_localizaton" type="fake_localization" pkg="fake_localization">
+<rosparam>
+  odom_frame_id: odom
+  base_frame_id: base_link
+</rosparam>
+</node> -->
+<!-- est ce que ca sert encore ? ou que pr2 ? -->
+<!-- Uncomment for PR2 -->
+  <!-- <node name="fake_localizaton" type="fake_localization" pkg="fake_localization">
+    <rosparam>
+      odom_frame_id: odom_combined
+      base_frame_id: base_footprint
+    </rosparam>
+  </node> -->
+
+
+
+
+  <!-- for pr2 robot >
+  <arg name="KINECT1" default="$(optenv KINECT1 false)" />
+  <arg name="KINECT2" default="$(optenv KINECT2 false)" /-->
+  <!-- Spawn PR2 -->
+  <!--include file="$(find pr2_gazebo)/launch/pr2_no_arms.launch"-->
+  <!--include file="$(find imhus_gazebo_ros)/models/pr2_simple/pr2_gazebo/launch/pr2_no_arms.launch">
+    <arg name="pose" value="$(arg robot_pose)"/>
+  </include-->
+  <!-- tuck pr2 arms-->
+   <!--include file="$(find imhus_gazebo_ros)/launch/pr2_tuck_arms.launch" /-->

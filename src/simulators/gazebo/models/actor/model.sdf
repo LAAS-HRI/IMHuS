@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="human1">
+    <pose>3 3 1.05  0 0 0</pose>
+    <static>false</static>
+    <frame name="frame"/>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh><uri>model://actor/meshes/SKIN_man_red_shirt.dae</uri></mesh>
+        </geometry>
+      </visual>
+      <collision name="human_collision">
+        <geometry>
+          <box>
+            <size>.3 .2 2.1</size>
+          </box>
+        </geometry>
+        <surface>
+      <friction>
+        <ode><mu>0.001</mu><mu2>0.001</mu2></ode>
+      </friction>
+    </surface>
+      </collision>
+    </link>
+    <plugin name="actor_plugin" filename="libactor_plugin.so">
+    </plugin>
+  </model>
+</sdf>

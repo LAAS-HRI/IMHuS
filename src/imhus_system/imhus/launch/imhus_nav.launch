@@ -1,0 +1,21 @@
+<launch>
+  <arg name="ns" default="imhus"/>
+  <arg name="map_name" default="elevator"/>
+  <arg name="node_start_delay" default="2.0"/>
+
+  <!-- localization and maps -->
+  <include file="$(find imhus)/launch/include/_locate_pub.launch">
+    <arg name="ns" value="$(arg ns)"/>
+    <arg name="map_name" value="$(arg map_name)"/>
+  </include>
+
+  <!-- MoveBase for global planner -->
+  <include file="$(find imhus)/launch/include/_nav.launch">
+    <arg name="ns" value="$(arg ns)"/>
+    <arg name="node_start_delay" value="$(arg node_start_delay)"/>
+  </include>
+
+  <!-- visualization with Rviz -->
+  <include file="$(find imhus)/launch/include/_rviz.launch"/>
+
+</launch>

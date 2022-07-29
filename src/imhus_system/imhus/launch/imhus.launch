@@ -1,0 +1,21 @@
+<launch>
+	<arg name="ns" default="imhus"/>
+	<arg name="map_name" default="elevator"/>
+
+	<!-- InHuS_Manager -->
+	<node name="imhusManager_node" type="imhusManager_node" pkg="imhus" ns="$(arg ns)" output="screen"> 
+		<param name="map_name" value="$(arg map_name)"/>
+	</node>
+
+	<!-- BossUI -->
+	<node name="boss_node" type="boss_node" pkg="imhus" ns="$(arg ns)" output="screen" launch-prefix="xterm -geometry '80x25' -e">
+		<param name="map_name" value="$(arg map_name)"/>
+	</node>
+
+	<!-- MoveBase + maps, agentsTracker -->
+	<include file="$(find imhus)/launch/imhus_nav.launch">
+		<arg name="ns" value="$(arg ns)"/>
+    	<arg name="map_name" value="$(arg map_name)"/>
+  	</include>
+
+</launch>

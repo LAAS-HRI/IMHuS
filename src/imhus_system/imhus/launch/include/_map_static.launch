@@ -1,0 +1,13 @@
+<launch>
+	<arg name="ns" default="imhus"/>
+	<arg name="map_name" default="elevator"/>
+
+	<node name="map_server" pkg="map_server" type="map_server" ns="$(arg ns)" args="$(find imhus)/maps/elevator/elevator.yaml" if="$(eval 'elevator'==arg('map_name'))">
+		<remap from="map" to="map_static"/>
+	</node>
+	<!-- laas_adream may not be operational yet -->
+	<node name="map_server" pkg="map_server" type="map_server" ns="$(arg ns)" args="$(find imhus)/maps/laas_adream/laas_adream.yaml" if="$(eval 'laas_adream'==arg('map_name'))">
+		<remap from="map" to="map_static"/>
+	</node>
+
+</launch>

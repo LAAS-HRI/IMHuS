@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+
+<!-- Actions -->
+<!-- Navigation actions -->
+<!--   goto_action(actionID, pose/agent/object) -->
+<!--   wait_action(actionID, duration) -->
+<!-- Turning actions -->
+<!--   turn_action(actionID, angle) -->
+<!--   lookAt_action(actionID, agent/object) -->
+<!-- Grouping actions -->
+<!--   group_action(actionID, agents, pose) -->
+<!--   ungroup_action(actionID, agent, group) -->
+<!-- Synchronous events actions -->
+<!--   publish_event_action(actionID, topic, event) -->
+<!--   subscribe_event_action(actionID, topic, event) -->
+<!-- Asynchronous event actions -->
+<!--   request_event_action(actionID, topic, event) -->
+<!--   respond_event_action(actionID, topic, event)-->
+
+<ihhus>
+    <poses>
+        <!-- modify positions!!! -->
+        <pose poseID="mail corridor" x="1.0" y="0.9" theta="-1.57" radius="0.0"/>
+        <pose poseID="printers corridor" x="3.15" y="3.2" theta="1.57" radius="0.0"/>
+        <pose poseID="east corner" x="10.2" y="-3.98" theta="0.0" radius="0.0"/>
+        <pose poseID="west corner" x="7.9" y="5.10" theta="-1.57" radius="0.0"/>
+        <pose poseID="north corner" x="7.9" y="5.10" theta="-1.57" radius="0.0"/>
+        <pose poseID="outside elevator" x="0.65" y="8.50" theta="-3.14" radius="0.0"/>
+        <pose poseID="inside elevator" x="0.65" y="8.50" theta="-3.14" radius="0.0"/>
+        <pose poseID="elevator door pose" x="0.65" y="8.50" theta="-3.14" radius="0.0"/>
+        <pose poseID="elevator button pose" x="0.65" y="8.50" theta="-3.14" radius="0.0"/>
+    </poses>
+
+    <map name="laas_adream">
+        <object objectID="elevator door" pose="elevator door pose"/>
+        <object objectID="elevator button" pose="elevator button pose"/>
+    </map>
+
+    <agents>
+        <human humanID="human1" initial_pose="north corridor"/>
+        <human humanID="human2" initial_pose="west corner"/>
+        <human humanID="human3" initial_pose="east corner"/>
+        <human humanID="human4" initial_pose="printers corridor"/>
+        <robot robotID="tiago" initial_pose="outside elevator"/>
+    </agents>
+
+    <groups>
+        <pair pairID="pair12" human="human1" human="human2"/>
+        <group groupID="group12-3" pair="pair12" human="human3" />
+    </groups>
+
+    <compound_tasks>
+        <compound_task compound_taskID="go to elevator">
+            <goto_action actionID="go to elevator" pose="outside elevator"/>
+        </compound_task>
+        <compound_task compound_taskID="call elevator up">
+            <goto_action actionID="go to elevator" pose="outside elevator"/>
+            <lookAt actionID="elevator button" object="elevator button"/>
+            <publish_event_action actionID="push button up" topic="/elevator/request" event="up"/>
+            <subscribe_event_action actionID="wait elevator up" topic="/elevator/direction" event="up"/>
+            <subscribe_event_action actionID="wait elevator open" topic="/elevator/door" event="open"/>
+        </compound_task>
+        <compound_task compound_taskID="enter elevator">
+            <goto_action actionID="enter elevator" pose_goal="inside elevator"/>
+            <lookAt actionID="elevator door" object="elevator door"/>
+            <subscribe_event_action actionID="wait elevator closed" topic="/elevator/door" event="closed"/>
+        </compound_task>
+        <compound_task compound_taskID="group pair12">
+            <group_action actionID="group pair12 in mail corridor" groupID="pair12" poseID="mail corridor"/>
+        </compound_task>
+        <compound_task compound_taskID="group group12-3">
+            <group_action actionID="group group12-3 in mail corridor" groupID="group12-3"/>
+        </compound_task>
+    </compound_tasks>
+
+    <scenarios>
+        <scenario name="taking the elevator">
+            <step stepID="step 0"> <!-- initial poses agents? -->
+                <stepElement agentsID="human1" poseID="west corner"/>
+                <stepElement agentsID="human2" poseID="east corner"/>
+                <stepElement agentsID="humna3" poseID="mail corridor"/>
+                <stepElement agentsID="human4" poseID="printers corridor"/>
+                <stepElement agentsID="tiago" poseID="outside elevator"/>
+            </step>
+            <step stepID="step 1">
+                <stepElement agentsID="pair12" compound_taskID="group pair12" />
+                <stepElement agentsID="pair12" compound_taskID="go to elevator"/>
+                <stepElement agentsID="human3" compound_taskID="group12-3"/>
+                <stepElement agentsID="group12-3" compound_taskID="go to elevator"/>
+                <stepElement agentsID="human2" compound_taskID="call elevator up"/>
+            </step>
+            <step stepID="step 2">
+                <stepElement agentsID="group12-3" compound_taskID="enter elevator"/>
+            </step>
+            <async_step>
+                <respond_event_action actionID="tiago request up" topic="tiago/request" event="up">
+            </async_step>
+        </scenario>
+    </scenarios>
+</imhus>
