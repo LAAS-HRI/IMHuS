@@ -72,12 +72,12 @@ class Human(object):
             # print(self.id, q)
             #this case means ORCA is making the agent static probably pointlessly, so we override it
             rospy.logwarn("%s is not using ORCA and relies only on the global plan! It may collide. \n This is temporary.", self.id)
-            cmd_pose_.position.x = self.pose.position.x + (1./RATE_HZ)*self.prefVel.linear.x*0.1
-            cmd_pose_.position.y = self.pose.position.y + (1./RATE_HZ)*self.prefVel.linear.y*0.1
+            cmd_pose_.position.x = self.pose.position.x + (1./RATE_HZ)*self.prefVel.linear.x*0.2
+            cmd_pose_.position.y = self.pose.position.y + (1./RATE_HZ)*self.prefVel.linear.y*0.2
             angle = math.atan2(self.prefVel.linear.x, self.prefVel.linear.y)
             cmd_pose_.orientation.x, cmd_pose_.orientation.y, cmd_pose_.orientation.z, cmd_pose_.orientation.w = euler_to_quaternion(angle, 0, 0)
-            cmd_twist_.linear.x = self.prefVel.linear.x*0.1
-            cmd_twist_.linear.y = self.prefVel.linear.y*0.1
+            cmd_twist_.linear.x = self.prefVel.linear.x*0.2
+            cmd_twist_.linear.y = self.prefVel.linear.y*0.2
         else:
             if(np.linalg.norm([orca_twist[0], orca_twist[1]])>0.01):
                 cmd_pose_.position.x = orca_pose[0]
