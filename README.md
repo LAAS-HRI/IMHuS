@@ -45,13 +45,6 @@ add a folder in src/simulators/ with the launch files, the models of the world a
 the relevant topics that bridge IMHuS to the simulator are called /imhus/input/* or /imhus/output/* (one for each agent). IMHuS takes in input the odometry of each agent (Pose+Twist) and outputs a command (Twist). For now Orca takes in input this twist and send an altered command, either /orca/output/*/cmd_vel or /orca/output/*/cmd_pose (Twist or Pose)
 
 
-these will be different for another user (cohan github):
-launch cohan:
-roslaunch cohan_navigation gazebo_tiago_only.launch 
-
-
-
-
 TREE :
 .
 └── src/
