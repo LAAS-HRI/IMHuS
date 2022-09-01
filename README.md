@@ -16,8 +16,11 @@ launch Gazebo :
 > roslaunch imhus_gazebo gazebo.launch
 
 add “gui:=true” for graphics
+
 add “robot:=true” for tiago
+
 add “nb_humans:=??” with ?? the number of humans (default=5)
+
 
 launch IMHuS :
 > roslaunch imhus imhus.launch
