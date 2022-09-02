@@ -47,26 +47,3 @@ with “tiago” as model_name and fill the other fields.
 ## To change the simuator
 add a folder in src/simulators/ with the launch files, the models of the world and of the agents
 the relevant topics that bridge IMHuS to the simulator are called /imhus/input/* or /imhus/output/* (one for each agent). IMHuS takes in input the odometry of each agent (Pose+Twist) and outputs a command (Twist). For now Orca takes in input this twist and send an altered command, either /orca/output/*/cmd_vel or /orca/output/*/cmd_pose (Twist or Pose)
-
-
-TREE :  
-.  
-└── src/  
-&nbsp;&nbsp;&nbsp;&nbsp;├── tiago_packages/  
-&nbsp;&nbsp;&nbsp;&nbsp;└── IMHuS/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── readme.md  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── videos/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── src/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── simulators/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│   └── gazebo  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── imhus_system/  
-                ├── agents_layer  
-                └── imhus/  
-                    ├── srv  
-                    ├── msg  
-                    ├── maps  
-                    ├── rviz  
-                    ├── config  
-                    ├── launch  
-                    ├── include  
-                    └── src  
