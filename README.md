@@ -52,14 +52,14 @@ the relevant topics that bridge IMHuS to the simulator are called /imhus/input/*
 TREE :  
 .  
 └── src/  
-    ├── tiago_packages/  
-    └── IMHuS/  
-        ├── readme.md  
-        ├── videos/  
-        └── src/  
-            ├── simulators/  
-            │   └── gazebo  
-            └── imhus_system/  
+&nbsp;&nbsp;&nbsp;&nbsp;├── tiago_packages/  
+&nbsp;&nbsp;&nbsp;&nbsp;└── IMHuS/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── readme.md  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── videos/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── src/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── simulators/  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│   └── gazebo  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── imhus_system/  
                 ├── agents_layer  
                 └── imhus/  
                     ├── srv  
