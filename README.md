@@ -31,7 +31,7 @@ In the small terminal (boss) that opens,  select Scenarios (1) then the first sc
 ***
 # TIPS 
 ## For testing a robot 
-communication with IMHuS through AsyncAction like in example video 
+communication with IMHuS through AsyncAction like in example video, 
 a script that publishes the pose and twist of the robot to the ORCA node
 
 ## To add more humans 
