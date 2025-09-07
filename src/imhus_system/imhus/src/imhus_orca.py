@@ -8,7 +8,7 @@ from nav_msgs.msg import Odometry
 import message_filters
 import rvo2
 import math
-from transformations import euler_from_quaternion
+from tf.transformations import euler_from_quaternion
 
 PI = math.pi
 RATE_HZ = 20.0 #20.0
@@ -101,15 +101,15 @@ class Human(object):
                     if prev_angle > PI:
                         d_angle = -d_angle
 
-                d_angle = max(d_angle,-max_d_angle)
-                d_angle = min(d_angle, max_d_angle)
+                # d_angle = max(d_angle,-max_d_angle)
+                # d_angle = min(d_angle, max_d_angle)
                 next_angle = prev_angle + d_angle
                 cmd_pose_.orientation.x, cmd_pose_.orientation.y, cmd_pose_.orientation.z, cmd_pose_.orientation.w = euler_to_quaternion(next_angle, 0, 0)
 
                 #for cohan only
                 cmd_twist_.linear.x = orca_twist[0]
                 cmd_twist_.linear.y = orca_twist[1]
-                cmd_twist_.angular.z = 0 #TODO
+                cmd_twist_.angular.z = 0
             else:
                 cmd_pose_ = self.pose
 

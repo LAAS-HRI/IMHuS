@@ -170,8 +170,6 @@
         <goto_action entityID="human4" poseID="initial_pose4"/>
         <goto_action entityID="human5" poseID="initial_pose5"/>
         <goto_action entityID="human6" poseID="initial_pose6"/>
-        <!-- <goto_action entityID="human7" poseID="initial_pose7"/>
-        <goto_action entityID="human8" poseID="initial_pose8"/> -->
       </initialisation>
       <go_to_elevator2>
         <go entityID="human6" taskID="call_elevator2"/>
@@ -202,23 +200,10 @@
       </wait_step>
       <goout_step>
         <goto_action entityID="human6" socialSpaceID="elevator_door1"/>
-        <!-- <goto_action entityID="human5" socialSpaceID="elevator"/> -->
         <goto_action entityID="human1" poseID="printer_floor2"/>
         <goto_action entityID="human2" poseID="center_floor2"/>
         <goto_action entityID="human4" poseID="center_floor2" relativeX="-2"/>
       </goout_step>
-      <step1>
-        <wait_action entityID="human2" duration="10"/>
-      </step1>
-      <step>
-        <goto_action entityID="human2" socialSpaceID="elevator_door2"/>
-        <goto_action entityID="human1" socialSpaceID="elevator_door2"/>
-        <wait_action entityID="human6" event="open" topic="/elevator/door1_state"/>
-      </step>
-      <step3>
-        <annoy entityID="human3" taskID="annoy_ppl"/>
-        <goto_action entityID="human6" socialSpaceID="elevator"/>
-      </step3>
     </take_elevator>
 
     <!-- the scenario below is just to put the agents at inital pose -->
@@ -230,8 +215,6 @@
         <goto_action entityID="human4" poseID="initial_pose4"/>
         <goto_action entityID="human5" poseID="initial_pose5"/>
         <goto_action entityID="human6" poseID="initial_pose6"/>
-        <!-- <goto_action entityID="human7" poseID="initial_pose7"/>
-        <goto_action entityID="human8" poseID="initial_pose8"/> -->
       </initialisation>
     </init>
   </scenarios>

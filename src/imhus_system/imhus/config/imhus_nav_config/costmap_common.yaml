@@ -21,7 +21,7 @@ inflater_layer:
 obstacle_layer:
   enabled:              true
   combination_method: 1
-  observation_sources: scan
+  observation_sources: scan_raw
   clearing: true
   scan:
     data_type: LaserScan

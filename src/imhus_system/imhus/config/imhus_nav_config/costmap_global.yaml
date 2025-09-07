@@ -1,6 +1,6 @@
 global_costmap:
   global_frame: map
-  robot_base_frame: floating_frame #human1/base_footprint 
+  robot_base_frame: base_footprint #human1/base_footprint 
   update_frequency: 10
   publish_frequency: 10
   robot_radius: 0.3
@@ -13,7 +13,7 @@ global_costmap:
   - {name: inflater_layer, type: "costmap_2d::InflationLayer"}
   #layer for updating position of agents
   #uncomment to add agents on costmap and run the agents_tracker.py in laucnh file _locate_pub.launch
-  # - {name: any_name, type: "agents_layer::AgentsLayer"}
+  - {name: any_name, type: "agents_layer::AgentsLayer"}
 
   inflater_layer:
     inflation_radius: .2 #0.6

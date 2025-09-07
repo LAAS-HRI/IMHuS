@@ -11,7 +11,7 @@
 
     <!-- the node agents_tracker is not needed when ORCA is running -->
     <!-- if you want the agents on the costmap, uncomment line ine costmap_global.yaml -->
-    <node name="agentTrackerNode_IMHUS" pkg="imhus" type="agents_tracker.py"/>
+    <!-- <node name="agentTrackerNode_IMHUS" pkg="imhus" type="agents_tracker.py"/> -->
 
 
     <!-- this is from InHus (IMHuS v1.0) could be useful in the future -->

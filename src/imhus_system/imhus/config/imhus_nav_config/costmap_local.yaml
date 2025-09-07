@@ -1,6 +1,6 @@
 local_costmap:
-  global_frame: map
-  robot_base_frame: floating_frame #human1/base_footprint 
+  global_frame: odom
+  robot_base_frame: base_footprint #human1/base_footprint 
   update_frequency: 1.0
   publish_frequency: 1.0
   width: 3.0
